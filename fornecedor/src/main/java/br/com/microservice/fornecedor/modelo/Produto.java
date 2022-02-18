@@ -6,23 +6,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public class Roupa {
+public class Produto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
 	private String nome;
-	private float preco;
+
 	@Enumerated(EnumType.STRING)
-	private Categoria categoria;
-
-	public Categoria getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
+	private Cor cor;
+	@Enumerated(EnumType.STRING)
+	private Tamanho tamanho;
+	@Enumerated(EnumType.STRING)
+	private Modelo modelo;
 
 	public Long getId() {
 		return id;
@@ -40,22 +37,13 @@ public class Roupa {
 		this.nome = nome;
 	}
 
-	public float getPreco() {
-		return preco;
-	}
-
-	public void setPreco(float preco) {
-		this.preco = preco;
-	}
-
-	public Roupa(Long id, String nome, String descricao, float preco, Categoria categoria) {
+	public Produto(Long id, String nome, String descricao) {
 		this.id = id;
 		this.nome = nome;
-		this.categoria = categoria;
-		this.preco = preco;
+
 	}
 
-	public Roupa() {
+	public Produto() {
 
 	}
 }

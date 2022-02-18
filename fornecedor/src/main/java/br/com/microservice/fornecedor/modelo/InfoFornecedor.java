@@ -6,12 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
-
 public class InfoFornecedor implements Serializable {
 
 	private static final long serialVersionUID = 7915038820583474048L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -65,8 +63,8 @@ public class InfoFornecedor implements Serializable {
 		this.estado = estado;
 		this.endereco = endereco;
 	}
-	public InfoFornecedor() {
-	
 
-}
+	public InfoFornecedor() {
+
+	}
 }

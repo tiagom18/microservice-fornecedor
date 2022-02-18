@@ -6,17 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import br.com.microservice.fornecedor.modelo.Roupa;
-import br.com.microservice.fornecedor.service.RoupaService;
+import br.com.microservice.fornecedor.modelo.Produto;
+import br.com.microservice.fornecedor.service.ProdutoService;
 
 @RequestMapping("/produto")
 public class ProdutoController {
 	
 	@Autowired
-	private RoupaService produtoService;
+	private ProdutoService produtoService;
 	
 	@RequestMapping("/{estado}")
-	public List<Roupa> getProdutosPorEstado(@PathVariable("estado") String estado) {
+	public List<Produto> getProdutosPorEstado(@PathVariable("estado") String estado) {
 		return produtoService.getRoupasPorEstado(estado);
 	}
 

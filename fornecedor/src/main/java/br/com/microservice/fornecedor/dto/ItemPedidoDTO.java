@@ -1,26 +1,32 @@
 package br.com.microservice.fornecedor.dto;
 
-
-
-
 public class ItemPedidoDTO {
 	private long id;
-	
-	private int quantidade;
-	
+
+	private int quantidadePedido;
+
+	public ItemPedidoDTO(int quantidadePedido) {
+
+		this.quantidadePedido = quantidadePedido;
+	}
+
 	public long getId() {
 		return id;
 	}
+
 	public void setId(long id) {
 		this.id = id;
 	}
-	public int getQuantidade() {
-		return quantidade;
+
+	public int getQuantidadePedido() {
+		return quantidadePedido;
 	}
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
+
+	public void setQuantidadePedido(int quantidadePedido) {
+		this.quantidadePedido = quantidadePedido;
+	}
 
 	
+
 	
-	}
 }

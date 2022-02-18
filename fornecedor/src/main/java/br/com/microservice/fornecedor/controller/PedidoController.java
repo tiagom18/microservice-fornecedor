@@ -18,26 +18,27 @@ import br.com.microservice.fornecedor.service.PedidoService;
 
 @RestController
 @RequestMapping("pedido")
-public class PedidoController{
+public class PedidoController {
 	private static final Logger LOG = LoggerFactory.getLogger(PedidoController.class);
-	
+
 	@Autowired
 	private PedidoService pedidoService;
-	
+
 	@PostMapping
 	public Pedido realizaPedido(@RequestBody List<ItemPedidoDTO> roupas) {
 		LOG.info("pedido recebido");
 		return pedidoService.realizarPedido(roupas);
 	}
-	
+
 	@GetMapping
 	public Pedido getPedidoPorId(@PathVariable Long id) {
 		return pedidoService.getPedidoPorId(id);
 	}
-	
+
+	@PostMapping
+	public Pedido removerItem(@RequestBody List<ItemPedidoDTO> item) {
+		LOG.info("removido");
+		return pedidoService.removerItem(item);
+	}
 
 }
-
-
-
-
