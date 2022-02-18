@@ -1,5 +1,7 @@
 package br.com.microservice.fornecedor.modelo;
 
+
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
