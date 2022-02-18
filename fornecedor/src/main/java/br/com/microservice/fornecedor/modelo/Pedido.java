@@ -1,19 +1,45 @@
 package br.com.microservice.fornecedor.modelo;
 
+
+
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
-import br.com.microservice.fornecedor.dto.ItemPedidoDTO;
+
 
 public class Pedido {
 	private int id;
 	private Double valorTotal;
-	private int quantidade;
-	@ManyToMany
-	@JoinColumn(name = "roupaId")
-	private Roupa roupa;
+	
+	@Enumerated(EnumType.STRING)
+	private Status status;
+	@Enumerated(EnumType.STRING)
+	private Cor cor;
+	@Enumerated(EnumType.STRING)
+	private Tamanho tamanho;
+	@Enumerated(EnumType.STRING)
+	private Modelo modelo;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "pedidoId")
+	private List<ItemPedido> itens;
+	
+	
+
+	public Pedido(Double valorTotal, Status status, Cor cor, Tamanho tamanho, Modelo modelo) {
+	
+		this.valorTotal = valorTotal;
+		this.status = status;
+		this.cor = cor;
+		this.tamanho = tamanho;
+		this.modelo = modelo;
+		
+	}
 
 	public Double getValorTotal() {
 		return valorTotal;
@@ -23,13 +49,6 @@ public class Pedido {
 		this.valorTotal = valorTotal;
 	}
 
-	public int getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
-	}
 
 	public int getId() {
 		return id;
@@ -39,21 +58,21 @@ public class Pedido {
 		this.id = id;
 	}
 
-	public Roupa getRoupa() {
-		return roupa;
+
+	public Status getStatus() {
+		return status;
 	}
 
-	public void setRoupa(Roupa roupa) {
-		this.roupa = roupa;
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
-	public Pedido(int id, Double valorTotal, int quantidade, Roupa roupa) {
+	public List<ItemPedido> getItens() {
+		return itens;
+	}
 
-		this.id = id;
-		this.valorTotal = valorTotal;
-		this.quantidade = quantidade;
-		this.roupa = roupa;
-
+	public void setItens(List<ItemPedido> itens) {
+		this.itens = itens;
 	}
 
 	public Pedido() {

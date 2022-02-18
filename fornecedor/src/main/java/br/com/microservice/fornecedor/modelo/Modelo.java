@@ -1,6 +1,6 @@
 package br.com.microservice.fornecedor.modelo;
 
-public enum TipoDeRoupa {
+public enum Modelo {
 	VESTIDO,
 	BLUSA,
 	CALÇA,

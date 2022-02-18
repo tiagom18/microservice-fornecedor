@@ -11,11 +11,12 @@ import br.com.microservice.fornecedor.repository.InfoProvedorRepository;
 @Service
 public class InfoService {
 	private static final Logger log = LoggerFactory.getLogger(InfoService.class);
-	
+
 	@Autowired
 	private InfoProvedorRepository ir;
+
 	public InfoFornecedor getInfoPorEstado(String estado) {
-		log.info("informaÃ§Ãµes buscadas");
+		log.info("informacao buscada");
 		return ir.findByEstado(estado);
 	}
 

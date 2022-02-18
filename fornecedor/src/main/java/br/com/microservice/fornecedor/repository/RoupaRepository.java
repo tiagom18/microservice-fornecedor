@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import br.com.microservice.fornecedor.modelo.Roupa;
+import br.com.microservice.fornecedor.modelo.Produto;
 
-public interface RoupaRepository extends CrudRepository<Roupa, Long> {
+public interface RoupaRepository extends CrudRepository<Produto, Long> {
 
-	List<Roupa> findByEstado(String estados);
+	List<Produto> findByEstado(String estados);
 
-	List<Roupa> findById(List<Long> ids);
+	List<Produto> findById(List<Long> ids);
 
 }

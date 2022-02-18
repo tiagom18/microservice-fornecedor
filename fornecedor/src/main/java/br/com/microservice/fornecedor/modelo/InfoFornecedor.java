@@ -21,6 +21,8 @@ public class InfoFornecedor implements Serializable {
 	private String estado;
 
 	private String endereco;
+	
+	
 
 	public Long getId() {
 		return id;
