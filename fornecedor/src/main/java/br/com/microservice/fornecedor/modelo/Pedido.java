@@ -1,9 +1,11 @@
 package br.com.microservice.fornecedor.modelo;
 
+import java.util.List;
+
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 
-
+import br.com.microservice.fornecedor.dto.ItemPedidoDTO;
 
 public class Pedido {
 	private int id;
@@ -12,8 +14,6 @@ public class Pedido {
 	@ManyToMany
 	@JoinColumn(name = "roupaId")
 	private Roupa roupa;
-
-
 
 	public Double getValorTotal() {
 		return valorTotal;
@@ -31,7 +31,6 @@ public class Pedido {
 		this.quantidade = quantidade;
 	}
 
-
 	public int getId() {
 		return id;
 	}
@@ -48,23 +47,16 @@ public class Pedido {
 		this.roupa = roupa;
 	}
 
+	public Pedido(int id, Double valorTotal, int quantidade, Roupa roupa) {
 
-
-
-
-	
-
- public Pedido(int id, Double valorTotal, int quantidade, Roupa roupa) {
-		
 		this.id = id;
 		this.valorTotal = valorTotal;
 		this.quantidade = quantidade;
 		this.roupa = roupa;
-		
+
 	}
 
 	public Pedido() {
 
 	}
-
 }

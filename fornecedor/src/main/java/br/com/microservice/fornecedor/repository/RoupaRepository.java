@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import br.com.microservice.fornecedor.modelo.Roupa;
 
-public interface ProdutoRepository extends CrudRepository<Roupa, Long> {
+public interface RoupaRepository extends CrudRepository<Roupa, Long> {
 
 	List<Roupa> findByEstado(String estados);
 
