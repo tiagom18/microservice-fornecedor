@@ -8,8 +8,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+@EntityScan
 public class Pedido {
 	private int id;
 	private Double valorTotal;

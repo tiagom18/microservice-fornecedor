@@ -3,6 +3,8 @@ package br.com.microservice.fornecedor.modelo;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+@EntityScan
 public class ItemPedido {
 	private long id;
 	private int quantidadePedido;
