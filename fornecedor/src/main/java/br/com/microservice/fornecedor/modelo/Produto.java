@@ -1,20 +1,20 @@
 package br.com.microservice.fornecedor.modelo;
 
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-@EntityScan
+@Entity
 public class Produto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	private String nome;
 
 	@Enumerated(EnumType.STRING)
 	private Cor cor;
@@ -22,6 +22,17 @@ public class Produto {
 	private Tamanho tamanho;
 	@Enumerated(EnumType.STRING)
 	private Modelo modelo;
+
+	@ManyToOne
+	@JoinColumn(name = "estoqueId")
+	private Estoque estoque;
+
+	public Produto(Modelo modelo, Cor cor, Tamanho tamanho, Estoque estoque) {
+		this.cor = cor;
+		this.estoque = estoque;
+		this.modelo = modelo;
+		this.tamanho = tamanho;
+	}
 
 	public Long getId() {
 		return id;
@@ -31,21 +42,36 @@ public class Produto {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public Cor getCor() {
+		return cor;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setCor(Cor cor) {
+		this.cor = cor;
 	}
 
-	public Produto(Long id, String nome, String descricao) {
-		this.id = id;
-		this.nome = nome;
-
+	public Tamanho getTamanho() {
+		return tamanho;
 	}
 
-	public Produto() {
-
+	public void setTamanho(Tamanho tamanho) {
+		this.tamanho = tamanho;
 	}
+
+	public Modelo getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(Modelo modelo) {
+		this.modelo = modelo;
+	}
+
+	public Estoque getEstoque() {
+		return estoque;
+	}
+
+	public void setEstoque(Estoque estoque) {
+		this.estoque = estoque;
+	}
+
 }

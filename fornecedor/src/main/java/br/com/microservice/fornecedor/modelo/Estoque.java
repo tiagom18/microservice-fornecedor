@@ -1,24 +1,86 @@
 package br.com.microservice.fornecedor.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+@Entity
 public class Estoque {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+	private int codigo;
+	private String nome;
+	private double qtTotal;
+	private double qtMinima;
+	@OneToMany
+	@JoinColumn(name = "produtoId")
+    private List <Produto> produtos = new ArrayList <Produto>();
 
-	private Produto produto;
-	private int quantidadeEstoque;
+   
 
-	public Produto getProduto() {
-		return produto;
+	public Estoque(int codigo, String nome, double qtTotal, double qtMinima, List<Produto> produtos) {
+		super();
+		this.codigo = codigo;
+		this.nome = nome;
+		this.qtTotal = qtTotal;
+		this.qtMinima = qtMinima;
+		this.produtos = produtos;
 	}
 
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+
+	public List<Produto> getProdutos() {
+		return produtos;
 	}
 
-	public int getQuantidadeEstoque() {
-		return quantidadeEstoque;
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
 	}
 
-	public void setQuantidadeEstoque(int quantidadeEstoque) {
-		this.quantidadeEstoque = quantidadeEstoque;
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+
+	public String getNome() {
+		return nome;
+	}
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+	public double getQtTotal() {
+		return qtTotal;
+	}
+
+
+	public void setQtTotal(double qtTotal) {
+		this.qtTotal = qtTotal;
+	}
+
+
+	public double getQtMinima() {
+		return qtMinima;
+	}
+
+
+	public void setQtMinima(double qtMinima) {
+		this.qtMinima = qtMinima;
 	}
 
 }

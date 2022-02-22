@@ -1,12 +1,15 @@
 package br.com.microservice.fornecedor.dto;
 
+import br.com.microservice.fornecedor.modelo.Produto;
+
 public class ItemPedidoDTO {
 	private long id;
 
 	private int quantidadePedido;
+	private Produto produto;
 
-	public ItemPedidoDTO(int quantidadePedido) {
-
+	public ItemPedidoDTO(int quantidadePedido, Produto produto) {
+		this.produto = produto;
 		this.quantidadePedido = quantidadePedido;
 	}
 
@@ -26,7 +29,13 @@ public class ItemPedidoDTO {
 		this.quantidadePedido = quantidadePedido;
 	}
 
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
 	
 
-	
 }

@@ -1,48 +1,58 @@
 package br.com.microservice.fornecedor.modelo;
 
-
-
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.Entity;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-@EntityScan
+@Entity
 public class Pedido {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private Double valorTotal;
+	@OneToMany
+	@JoinColumn(name = "produtoId")
+	private List<Produto> produtos = new ArrayList<Produto>();
+	@ManyToOne
+	@JoinColumn(name = "estoqueId")
+	private Estoque estoque;
+	private int quantidade;
 
-	@Enumerated(EnumType.STRING)
-	private Status status;
-	@Enumerated(EnumType.STRING)
-	private Cor cor;
-	@Enumerated(EnumType.STRING)
-	private Tamanho tamanho;
+	public Pedido(List<Produto> produtos, Estoque estoque) {
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "pedidoId")
-	private List<ItemPedido> itens;
-
-	public Pedido(Double valorTotal, Status status, Cor cor, Tamanho tamanho) {
-
-		this.valorTotal = valorTotal;
-		this.status = status;
-		this.cor = cor;
-		this.tamanho = tamanho;
-
+		this.produtos = produtos;
+		this.estoque = estoque;
 	}
 
-	public Double getValorTotal() {
-		return valorTotal;
+	public int getQuantidade() {
+		return quantidade;
 	}
 
-	public void setValorTotal(Double valorTotal) {
-		this.valorTotal = valorTotal;
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+
+	public Estoque getEstoque() {
+		return estoque;
+	}
+
+	public void setEstoque(Estoque estoque) {
+		this.estoque = estoque;
 	}
 
 	public int getId() {
@@ -53,23 +63,8 @@ public class Pedido {
 		this.id = id;
 	}
 
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
-	public List<ItemPedido> getItens() {
-		return itens;
-	}
-
-	public void setItens(List<ItemPedido> itens) {
-		this.itens = itens;
-	}
-
 	public Pedido() {
 
 	}
+
 }
