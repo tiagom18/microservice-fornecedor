@@ -4,29 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Pedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@OneToMany
-	@JoinColumn(name = "produtoId")
+	@ManyToMany
 	private List<Produto> produtos = new ArrayList<Produto>();
-	
+
 	private int quantidade;
 
-
-
 	public Pedido(List<Produto> produtos, int quantidade) {
-		
+
 		this.produtos = produtos;
 		this.quantidade = quantidade;
 	}
@@ -46,10 +40,6 @@ public class Pedido {
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
-
-
-
-
 
 	public int getId() {
 		return id;

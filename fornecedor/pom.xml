@@ -12,7 +12,7 @@
 		<version>2.1.5.RELEASE</version>
 	</parent>
 
- 
+
 
 	<groupId>br.com.microservice.fornecedor</groupId>
 	<artifactId>spring-microservice-fornecedor</artifactId>
@@ -24,14 +24,12 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-		  <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"/>
+		<property name="hibernate.dialect"
+			value="org.hibernate.dialect.MySQL57Dialect" />
 	</properties>
 
 
-
 	<dependencies>
-
-
 
 
 		<dependency>
@@ -75,7 +73,7 @@
 			<artifactId>springfox-swagger2</artifactId>
 			<version>2.9.2</version>
 		</dependency>
-	
+
 
 		<dependency>
 			<groupId>io.springfox</groupId>
@@ -128,9 +126,7 @@
 		</dependency>
 
 
-
 	</dependencies>
-
 
 
 	<dependencyManagement>

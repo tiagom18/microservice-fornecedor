@@ -6,8 +6,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Produto {
@@ -15,21 +14,29 @@ public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
 	@Enumerated(EnumType.STRING)
 	private Cor cor;
 	@Enumerated(EnumType.STRING)
 	private Tamanho tamanho;
 	@Enumerated(EnumType.STRING)
 	private Modelo modelo;
+	
+	
+	private String nome;
+	
+	
+	public String getNome() {
+		return nome;
+	}
 
-	@ManyToOne
-	@JoinColumn(name = "estoqueId")
-	private Estoque estoque;
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-	public Produto(Modelo modelo, Cor cor, Tamanho tamanho, Estoque estoque) {
+	public Produto(Modelo modelo, Cor cor, Tamanho tamanho, String nome) {
 		this.cor = cor;
-		this.estoque = estoque;
+		this.nome = nome;
 		this.modelo = modelo;
 		this.tamanho = tamanho;
 	}
@@ -66,12 +73,6 @@ public class Produto {
 		this.modelo = modelo;
 	}
 
-	public Estoque getEstoque() {
-		return estoque;
-	}
 
-	public void setEstoque(Estoque estoque) {
-		this.estoque = estoque;
-	}
 
 }
