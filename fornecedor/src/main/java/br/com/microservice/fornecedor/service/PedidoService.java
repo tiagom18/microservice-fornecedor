@@ -12,16 +12,17 @@ import br.com.microservice.fornecedor.modelo.Pedido;
 import br.com.microservice.fornecedor.modelo.Produto;
 
 import br.com.microservice.fornecedor.repository.PedidoRepository;
-import br.com.microservice.fornecedor.repository.RoupaRepository;
+import br.com.microservice.fornecedor.repository.ProdutoRepository;
 
 
+/*
 @Service
 public class PedidoService {
 
 	@Autowired
 	private PedidoRepository pedidoR;
 	@Autowired
-	private RoupaRepository roupaR;
+	private ProdutoRepository roupaR;
 
 	public Pedido realizarPedido(List<ItemPedidoDTO> itens) {
 		List<Pedido> itemPedido = toPedido(itens);
@@ -33,7 +34,7 @@ public class PedidoService {
 	private List<Pedido> toPedido(List<ItemPedidoDTO> itens) {
 		List<Long> idsRoupas = itens.stream().map(item -> item.getId()).collect(Collectors.toList());
 
-		List<Produto> produtosDoPedido = roupaR.findById(idsRoupas);
+		List<Produto> produtosDoPedido = roupaR.findOne(idsRoupas);
 
 		List<Pedido> pedidoItens = itens.stream().map(item -> {
 			Produto produto = produtosDoPedido.stream().filter(p -> p.getId() == item.getId()).findFirst().get();
@@ -55,3 +56,4 @@ public class PedidoService {
 		return pedidoR.deleteById(iten);
 	}
 }
+*/

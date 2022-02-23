@@ -1,5 +1,5 @@
 package br.com.microservice.fornecedor.controller;
-
+/*
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -42,3 +42,4 @@ public class PedidoController {
 	}
 
 }
+*/
