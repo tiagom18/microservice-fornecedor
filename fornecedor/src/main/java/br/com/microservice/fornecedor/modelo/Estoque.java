@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+
 import javax.persistence.OneToMany;
 @Entity
 public class Estoque {
@@ -19,13 +19,12 @@ public class Estoque {
 	private double qtTotal;
 	private double qtMinima;
 	@OneToMany
-	@JoinColumn(name = "produtoId")
     private List <Produto> produtos = new ArrayList <Produto>();
 
    
 
 	public Estoque(int codigo, String nome, double qtTotal, double qtMinima, List<Produto> produtos) {
-		super();
+	
 		this.codigo = codigo;
 		this.nome = nome;
 		this.qtTotal = qtTotal;

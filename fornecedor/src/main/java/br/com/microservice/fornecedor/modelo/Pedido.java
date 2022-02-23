@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
 import javax.persistence.OneToMany;
 
 @Entity
@@ -20,15 +20,15 @@ public class Pedido {
 	@OneToMany
 	@JoinColumn(name = "produtoId")
 	private List<Produto> produtos = new ArrayList<Produto>();
-	@ManyToOne
-	@JoinColumn(name = "estoqueId")
-	private Estoque estoque;
+	
 	private int quantidade;
 
-	public Pedido(List<Produto> produtos, Estoque estoque) {
 
+
+	public Pedido(List<Produto> produtos, int quantidade) {
+		
 		this.produtos = produtos;
-		this.estoque = estoque;
+		this.quantidade = quantidade;
 	}
 
 	public int getQuantidade() {
@@ -47,13 +47,9 @@ public class Pedido {
 		this.produtos = produtos;
 	}
 
-	public Estoque getEstoque() {
-		return estoque;
-	}
 
-	public void setEstoque(Estoque estoque) {
-		this.estoque = estoque;
-	}
+
+
 
 	public int getId() {
 		return id;

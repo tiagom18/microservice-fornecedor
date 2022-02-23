@@ -18,7 +18,7 @@ import br.com.microservice.fornecedor.modelo.Pedido;
 import br.com.microservice.fornecedor.service.PedidoService;
 
 @RestController
-@RequestMapping("pedido")
+@RequestMapping("/pedido")
 public class PedidoController {
 	private static final Logger LOG = LoggerFactory.getLogger(PedidoController.class);
 
