@@ -91,8 +91,8 @@ public class ProdutoController {
 				String modeloString = modelo.toUpperCase();
 				Modelo modeloEnum = Enum.valueOf(Modelo.class, modeloString);
 				
-				Page<Produto> topicos = produtoRepository.findByModelo(modeloEnum, paginacao);
-				return ProdutoDto.converter(topicos);
+				Page<Produto> produto = produtoRepository.findByModelo(modeloEnum, paginacao);
+				return ProdutoDto.converter(produto);
 			}
 		}
 		@PostMapping

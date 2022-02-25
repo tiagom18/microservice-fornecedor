@@ -3,8 +3,6 @@ package br.com.microservice.fornecedor.controller.dto;
 
 import org.springframework.data.domain.Page;
 
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import br.com.microservice.fornecedor.modelo.Cor;
 import br.com.microservice.fornecedor.modelo.Modelo;
 import br.com.microservice.fornecedor.modelo.Produto;
@@ -18,6 +16,7 @@ public class ProdutoDto {
 	private String nome;
 	
 	public ProdutoDto(Produto produto) {
+		this.id = produto.getId();
 		this.cor = produto.getCor();
 		this.tamanho = produto.getTamanho();
 		this.modelo = produto.getModelo();
