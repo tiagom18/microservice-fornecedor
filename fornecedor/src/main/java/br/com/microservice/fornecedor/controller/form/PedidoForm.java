@@ -39,7 +39,7 @@ public class PedidoForm {
 	}
 
 	public Pedido converter() {
-		return new Pedido(produtos, quantidade);
+		return new Pedido(produtos);
 		
 	}
 

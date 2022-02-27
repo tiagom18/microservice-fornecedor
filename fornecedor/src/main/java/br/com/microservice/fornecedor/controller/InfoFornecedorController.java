@@ -25,7 +25,7 @@ import br.com.microservice.fornecedor.modelo.InfoFornecedor;
 import br.com.microservice.fornecedor.repository.InfoFornecedorRepository;
 
 @RestController
-@RequestMapping("/pedidos")
+@RequestMapping("/infoFornecedor")
 public class InfoFornecedorController {
 	
 

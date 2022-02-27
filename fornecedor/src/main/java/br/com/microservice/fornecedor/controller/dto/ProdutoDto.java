@@ -1,6 +1,8 @@
 package br.com.microservice.fornecedor.controller.dto;
 
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 
 import br.com.microservice.fornecedor.modelo.Cor;

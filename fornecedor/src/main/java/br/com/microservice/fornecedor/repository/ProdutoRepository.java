@@ -1,5 +1,7 @@
 package br.com.microservice.fornecedor.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,6 +18,7 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long>{
 	Page<Produto> findByCor(@RequestParam("cor") Cor cor, Pageable paginacao);
 	Page<Produto> findByTamanho(@RequestParam("tamanho") Tamanho tamanho, Pageable paginacao);
 	Page<Produto> findByModelo(@RequestParam("modelo") Modelo modelo, Pageable paginacao);
+	List<Produto> findById(List<Long> idsProdutos);
 	
 	
 

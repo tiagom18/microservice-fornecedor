@@ -19,10 +19,10 @@ public class Pedido {
 	@ManyToMany
 	private List<Produto> produtos = new ArrayList<Produto>();
 
-	public Pedido(List<Produto> produtos, int quantidade) {
+	public Pedido(List<Produto> produtos) {
 
 		this.produtos = produtos;
-		this.quantidade = quantidade;
+		
 	}
 
 
@@ -55,6 +55,8 @@ public class Pedido {
 	public Pedido() {
 
 	}
+
+
 
 	@Override
 	public int hashCode() {
