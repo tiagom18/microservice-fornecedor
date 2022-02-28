@@ -8,13 +8,13 @@ import br.com.microservice.fornecedor.modelo.Pedido;
 public class PedidoDto {
 	private Long id;
 	private int quantidade;
-	private List<ProdutoDto> produto;
+	private List<ProdutoDto> produtos;
 
 	public PedidoDto(Pedido pedido) {
 		this.id = pedido.getId();
 		this.quantidade = pedido.getQuantidade();
-		this.produto = new ArrayList<>();
-		this.produto.addAll(produto);
+		this.produtos = new ArrayList<>();
+		this.produtos.addAll(produtos);
 
 	}
 
@@ -35,11 +35,11 @@ public class PedidoDto {
 	}
 
 	public List<ProdutoDto> getProduto() {
-		return produto;
+		return produtos;
 	}
 
-	public void setProduto(List<ProdutoDto> produto) {
-		this.produto = produto;
+	public void setProduto(List<ProdutoDto> produtos) {
+		this.produtos = produtos;
 	}
 
 }

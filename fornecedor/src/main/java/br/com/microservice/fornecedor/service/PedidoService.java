@@ -1,18 +1,13 @@
 package br.com.microservice.fornecedor.service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import br.com.microservice.fornecedor.controller.dto.ProdutoDto;
 import br.com.microservice.fornecedor.controller.form.PedidoForm;
 import br.com.microservice.fornecedor.modelo.Pedido;
-import br.com.microservice.fornecedor.modelo.Produto;
 import br.com.microservice.fornecedor.repository.PedidoRepository;
 import br.com.microservice.fornecedor.repository.ProdutoRepository;
 
@@ -23,26 +18,16 @@ public class PedidoService {
 	@Autowired
 	ProdutoRepository produtoRepository;
 	
-	public Pedido cadastrar(PedidoForm form, List<ProdutoDto> itens) {
+	public Pedido cadastrar(PedidoForm form) {
 		
-			List<Produto> produtos = produto(itens);
-			Pedido pedido = new Pedido(produtos);
-			pedido = form.converter();
-			return pedidoRepository.save(pedido);
+			Pedido pedido = new Pedido();
+			Pedido produto = form.converter();
+			
+			return pedidoRepository.save(produto);
 		}
 
 	
-	public List<Produto> produto(List<ProdutoDto> itens){
-		List<Produto> produto = new ArrayList<Produto>();
-		List<Pedido> pedido = new ArrayList<Pedido>();
-		for (Pedido listaPedido : pedido) {
-			listaPedido.getProdutos();
-			listaPedido.getQuantidade();
-			
-		}
-		return produto;
-				
-		}
+
 	
 	
 	public Pedido detalhar(Long id) {

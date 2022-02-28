@@ -1,6 +1,5 @@
 package br.com.microservice.fornecedor.controller.form;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -14,7 +13,9 @@ public class PedidoForm {
 
 	@NotNull
 	private int quantidade;
-	private List<Produto> produtos = new ArrayList<Produto>();
+	
+	private List<Produto> produtos;
+
 	
 	
 	public int getQuantidade() {
@@ -29,6 +30,7 @@ public class PedidoForm {
 
 	
 	
+
 	public Pedido atualizar(Long id, PedidoRepository pedidoRepository) {
 		Pedido pedido = pedidoRepository.getOne(id);
 
@@ -39,15 +41,8 @@ public class PedidoForm {
 	}
 
 	public Pedido converter() {
-		return new Pedido(produtos);
-		
+		return new Pedido(produtos, quantidade);
 	}
 
-	public List<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
-	}
+	
 }

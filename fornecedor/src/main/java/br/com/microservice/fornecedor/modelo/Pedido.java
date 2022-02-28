@@ -19,12 +19,13 @@ public class Pedido {
 	@ManyToMany
 	private List<Produto> produtos = new ArrayList<Produto>();
 
-	public Pedido(List<Produto> produtos) {
-
+	public Pedido(List<Produto> produtos, int quantidade) {
+		this.quantidade = quantidade;
 		this.produtos = produtos;
 		
 	}
 
+	
 
 	public Long getId() {
 		return id;
