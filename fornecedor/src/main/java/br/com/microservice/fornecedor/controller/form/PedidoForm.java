@@ -33,7 +33,7 @@ public class PedidoForm {
 
 	public Pedido atualizar(Long id, PedidoRepository pedidoRepository) {
 		Pedido pedido = pedidoRepository.getOne(id);
-
+		pedido.setProdutos(produtos);
 		pedido.setQuantidade(this.quantidade);
 		return pedido;
 		

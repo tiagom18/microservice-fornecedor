@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,27 +16,24 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private int quantidade;
-
+	
 	@ManyToMany
 	private List<Produto> produtos = new ArrayList<Produto>();
 
 	public Pedido(List<Produto> produtos, int quantidade) {
 		this.quantidade = quantidade;
 		this.produtos = produtos;
-		
-	}
 
+	}
 	
 
 	public Long getId() {
 		return id;
 	}
 
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public int getQuantidade() {
 		return quantidade;
@@ -56,8 +54,6 @@ public class Pedido {
 	public Pedido() {
 
 	}
-
-
 
 	@Override
 	public int hashCode() {

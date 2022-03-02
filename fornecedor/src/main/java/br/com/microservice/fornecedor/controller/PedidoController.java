@@ -1,6 +1,7 @@
 package br.com.microservice.fornecedor.controller;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -21,6 +22,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.microservice.fornecedor.controller.dto.PedidoDto;
 import br.com.microservice.fornecedor.controller.form.PedidoForm;
 import br.com.microservice.fornecedor.modelo.Pedido;
+import br.com.microservice.fornecedor.modelo.Produto;
 import br.com.microservice.fornecedor.repository.PedidoRepository;
 import br.com.microservice.fornecedor.service.PedidoService;
 
@@ -48,19 +50,20 @@ public class PedidoController {
 
 		}
 
-		
+	
 		
 	
 		@GetMapping("/{id}")
-		public Pedido detalhar(@PathVariable Long id) {
+		public ResponseEntity<PedidoDto> detalhar(@PathVariable Long id) {
 		return pedidoService.detalhar(id);
 
 		}
 
+		
 		@PutMapping("/{id}")
 		@Transactional
 		@CacheEvict(value = "listaDePedido", allEntries = true)
-		public Pedido atualizar(@PathVariable Long id, @RequestBody @Valid PedidoForm form) {
+		public ResponseEntity<PedidoDto> atualizar(@PathVariable Long id, @RequestBody @Valid PedidoForm form) {
 			return pedidoService.atualizar(id, form);
 
 		}
@@ -68,7 +71,7 @@ public class PedidoController {
 		@DeleteMapping("/{id}")
 		@Transactional
 		@CacheEvict(value = "listaDePedido", allEntries = true)
-		public Pedido remover(@PathVariable Long id) {
+		public ResponseEntity<?> remover(@PathVariable Long id) {
 		
 			return pedidoService.remover(id);
 
