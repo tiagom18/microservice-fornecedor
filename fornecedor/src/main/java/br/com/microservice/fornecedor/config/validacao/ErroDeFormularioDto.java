@@ -1,5 +1,8 @@
 package br.com.microservice.fornecedor.config.validacao;
 
+import springfox.documentation.annotations.ApiIgnore;
+
+@ApiIgnore
 public class ErroDeFormularioDto {
 
 	private String campo;

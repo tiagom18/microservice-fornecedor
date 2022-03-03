@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import springfox.documentation.annotations.ApiIgnore;
+@ApiIgnore
 @RestControllerAdvice
 public class ErroDeValidacaoHandler {
 	
