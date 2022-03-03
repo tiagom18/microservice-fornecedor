@@ -12,12 +12,11 @@ public class PedidoForm {
 	private int quantidade;
 	@NotNull
 	private Produto produto;
-	
+
 
 	public int getQuantidade() {
 		return quantidade;
 	}
-
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
@@ -32,7 +31,7 @@ public class PedidoForm {
 
 	public Pedido atualizar(Long id, PedidoRepository pedidoRepository) {
 		Pedido pedido = pedidoRepository.getOne(id);
-		
+
 		pedido.setQuantidade(this.quantidade);
 		return pedido;
 

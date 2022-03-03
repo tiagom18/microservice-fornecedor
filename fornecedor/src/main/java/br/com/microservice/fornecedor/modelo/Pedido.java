@@ -1,8 +1,4 @@
 package br.com.microservice.fornecedor.modelo;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,7 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 import br.com.microservice.fornecedor.controller.dto.PedidoDto;
@@ -24,10 +19,7 @@ public class Pedido {
 
 	@OneToOne(fetch = FetchType.LAZY)
 	
- @JoinColumns({
-	        @JoinColumn(name="IdProduto", referencedColumnName="ID"),
-	        @JoinColumn(name="NomeProduto", referencedColumnName="NOME")
-	    })
+	@JoinColumn(name="IdProduto", referencedColumnName="ID")   
 	private Produto produto;
 
 	public Pedido(Produto produto, int quantidade) {
@@ -35,20 +27,16 @@ public class Pedido {
 		this.produto = produto;
 
 	}
-	
 
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public int getQuantidade() {
 		return quantidade;
 	}
-
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
@@ -62,9 +50,7 @@ public class Pedido {
 	}
 
 	public Pedido() {
-
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -72,7 +58,6 @@ public class Pedido {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -95,14 +80,3 @@ public class Pedido {
 		return null;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
