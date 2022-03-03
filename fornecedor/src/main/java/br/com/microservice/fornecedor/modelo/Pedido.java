@@ -8,7 +8,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+
+import br.com.microservice.fornecedor.controller.dto.PedidoDto;
 
 @Entity
 public class Pedido {
@@ -16,13 +21,18 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private int quantidade;
-	
-	@ManyToMany
-	private List<Produto> produtos = new ArrayList<Produto>();
 
-	public Pedido(List<Produto> produtos, int quantidade) {
+	@OneToOne(fetch = FetchType.LAZY)
+	
+ @JoinColumns({
+	        @JoinColumn(name="IdProduto", referencedColumnName="ID"),
+	        @JoinColumn(name="NomeProduto", referencedColumnName="NOME")
+	    })
+	private Produto produto;
+
+	public Pedido(Produto produto, int quantidade) {
 		this.quantidade = quantidade;
-		this.produtos = produtos;
+		this.produto = produto;
 
 	}
 	
@@ -43,12 +53,12 @@ public class Pedido {
 		this.quantidade = quantidade;
 	}
 
-	public List<Produto> getProdutos() {
-		return produtos;
+	public Produto getProduto() {
+		return produto;
 	}
 
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 
 	public Pedido() {
@@ -79,4 +89,20 @@ public class Pedido {
 			return false;
 		return true;
 	}
+
+	public PedidoDto map(Object object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+

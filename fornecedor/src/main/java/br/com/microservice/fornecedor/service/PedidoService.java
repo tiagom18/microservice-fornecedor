@@ -27,6 +27,7 @@ public class PedidoService {
 	@Autowired
 	ProdutoRepository produtoRepository;
 	
+	/*
 	public Pedido cadastrar(PedidoForm form) {
 		
 			Pedido pedido = new Pedido();
@@ -35,7 +36,7 @@ public class PedidoService {
 			return pedidoRepository.save(produto);
 		}
 
-	
+	*/
 
 	
 	

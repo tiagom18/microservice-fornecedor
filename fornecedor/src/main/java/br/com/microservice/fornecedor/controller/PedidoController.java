@@ -1,7 +1,6 @@
 package br.com.microservice.fornecedor.controller;
 
 import java.net.URI;
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -22,7 +21,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.microservice.fornecedor.controller.dto.PedidoDto;
 import br.com.microservice.fornecedor.controller.form.PedidoForm;
 import br.com.microservice.fornecedor.modelo.Pedido;
-import br.com.microservice.fornecedor.modelo.Produto;
 import br.com.microservice.fornecedor.repository.PedidoRepository;
 import br.com.microservice.fornecedor.service.PedidoService;
 
@@ -31,7 +29,6 @@ import br.com.microservice.fornecedor.service.PedidoService;
 public class PedidoController {
 	
 
-		
 		
 		@Autowired
 		private PedidoService pedidoService;
@@ -44,8 +41,10 @@ public class PedidoController {
 		public ResponseEntity<PedidoDto> cadastrar(@RequestBody @Valid PedidoForm form, UriComponentsBuilder uriBuilder) {
 			
 			Pedido pedido = form.converter();
+			form.getProduto().getId();
+			form.getProduto().getNome();
 			pedidoRepository.save(pedido);
-			URI uri = uriBuilder.path("/produto/{id}").buildAndExpand(pedido.getId()).toUri();
+			URI uri = uriBuilder.path("/pedido/{id}").buildAndExpand(pedido.getId()).toUri();
 			return ResponseEntity.created(uri).body(new PedidoDto(pedido));
 
 		}

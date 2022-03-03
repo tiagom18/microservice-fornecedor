@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -24,18 +25,24 @@ public class Produto {
 	@Enumerated(EnumType.STRING)
 	private Modelo modelo;
 	private String nome;
-	
-
 
 	public Produto() {
 
 	}
 
-	public Produto(Cor cor,Tamanho tamanho,Modelo modelo,String nome) {
+	public Produto(Cor cor, Tamanho tamanho, Modelo modelo, String nome) {
 		super();
 		this.cor = cor;
 		this.tamanho = tamanho;
 		this.modelo = modelo;
+		this.nome = nome;
+	}
+	
+	
+
+	public Produto(Long id, String nome) {
+		super();
+		this.id = id;
 		this.nome = nome;
 	}
 
