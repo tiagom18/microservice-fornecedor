@@ -1,5 +1,6 @@
 package br.com.microservice.fornecedor.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -15,8 +16,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import br.com.microservice.fornecedor.controller.dto.PedidoDto;
+import br.com.microservice.fornecedor.controller.dto.PedidoProdutoDto;
 import br.com.microservice.fornecedor.controller.form.PedidoForm;
+import br.com.microservice.fornecedor.modelo.ItemPedido;
 import br.com.microservice.fornecedor.modelo.Pedido;
+import br.com.microservice.fornecedor.modelo.Produto;
 import br.com.microservice.fornecedor.repository.PedidoRepository;
 import br.com.microservice.fornecedor.repository.ProdutoRepository;
 
@@ -27,17 +31,33 @@ public class PedidoService {
 	@Autowired
 	ProdutoRepository produtoRepository;
 	
-	/*
-	public Pedido cadastrar(PedidoForm form) {
-		
-			Pedido pedido = new Pedido();
-			Pedido produto = form.converter();
-			
-			return pedidoRepository.save(produto);
-		}
+	
+	
+	 public NovoPedido(ProdutoRepository produtoRepository, PedidoRepository pedidoRepository) {
 
-	*/
+	        this.produtoRepository = produtoRepository;
+	   
+	        this.pedidoRepository = pedidoRepository;
+	    }
 
+	    public Pedido criar( List<PedidoProdutoDto> pedidosDeProduto) {
+
+	    
+	        Pedido pedido = new Pedido();
+
+	        for (PedidoProdutoDto item: pedidosDeProduto)
+	        {
+	            Produto produto = produtoRepository.findById(item.produtoId).orElse(null);
+	         
+
+	            produto.removerQuantidade(item.quantidade);
+	            pedido.adcionarProduto(produto, item.quantidade);
+	        }
+
+	        pedidoRepository.save(pedido);
+
+	        return pedido;
+	    }
 	
 	
 

@@ -21,6 +21,16 @@ public class ProdutoForm {
 	private Modelo modelo;
 	@NotNull@NotEmpty@Length(min = 1)
 	private String nome;
+	@NotNull
+	private double preco;
+	
+	
+	public double getPreco() {
+		return preco;
+	}
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}
 	public Cor getCor() {
 		return cor;
 	}
@@ -48,7 +58,7 @@ public class ProdutoForm {
 	
 	
 	public Produto converter() {
-		return new Produto(cor, tamanho, modelo, nome);
+		return new Produto(cor, tamanho, modelo, nome,preco);
 	}
 	
 	
@@ -58,6 +68,7 @@ public class ProdutoForm {
 		produto.setTamanho(this.tamanho);
 		produto.setModelo(this.modelo);
 		produto.setNome(this.nome);
+		produto.setPreco(this.preco);
 		return produto;
 		
 		

@@ -1,45 +1,47 @@
 package br.com.microservice.fornecedor.controller.form;
 
-import javax.validation.constraints.NotNull;
+import java.util.List;
 
 import br.com.microservice.fornecedor.modelo.Pedido;
 import br.com.microservice.fornecedor.modelo.Produto;
-import br.com.microservice.fornecedor.repository.PedidoRepository;
 
-public class PedidoForm {
+public class ItemPedidoForm {
 
-	@NotNull
-	private int quantidade;
-	@NotNull
 	private Produto produto;
-
-
+	private Pedido pedido;
+	private int quantidade;
+	private List<Produto> produtoLista;
+	
+	
+	
+	
+	public Pedido getPedido() {
+		return pedido;
+	}
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
 	public int getQuantidade() {
 		return quantidade;
 	}
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
-
 	public Produto getProduto() {
 		return produto;
 	}
-
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
-
-	public Pedido atualizar(Long id, PedidoRepository pedidoRepository) {
-		Pedido pedido = pedidoRepository.getOne(id);
-
-		pedido.setQuantidade(this.quantidade);
-		return pedido;
-
+	public List<Produto> getProdutoLista() {
+		return produtoLista;
 	}
-
-	public Pedido converter() {
-
-		return new Pedido();
+	public void setProdutoLista(List<Produto> produtoLista) {
+		this.produtoLista = produtoLista;
 	}
+	
 
+	
+	
+	
 }

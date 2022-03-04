@@ -1,12 +1,13 @@
 package br.com.microservice.fornecedor.modelo;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import br.com.microservice.fornecedor.controller.dto.PedidoDto;
 
@@ -16,17 +17,14 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private int quantidade;
-
-	@OneToOne(fetch = FetchType.LAZY)
+	@NotNull
+    private Status status;
 	
-	@JoinColumn(name="IdProduto", referencedColumnName="ID")   
-	private Produto produto;
+	 @OneToMany(cascade = CascadeType.ALL)
+	    private List<ItemPedido> items;
+	
 
-	public Pedido(Produto produto, int quantidade) {
-		this.quantidade = quantidade;
-		this.produto = produto;
 
-	}
 
 	public Long getId() {
 		return id;
@@ -41,16 +39,31 @@ public class Pedido {
 		this.quantidade = quantidade;
 	}
 
-	public Produto getProduto() {
-		return produto;
+	
+	public Status getStatus() {
+		return status;
 	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+	public void setStatus(Status status) {
+		this.status = status;
 	}
-
+	public List<ItemPedido> getItems() {
+		return items;
+	}
+	public void setItems(List<ItemPedido> items) {
+		this.items = items;
+	}
 	public Pedido() {
 	}
+	
+	   public void adcionarProduto(Produto produto, int quantidade) {
+
+	        ItemPedido item = new ItemPedido(produto, quantidade);
+	        items.add(item);
+	    }
+
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

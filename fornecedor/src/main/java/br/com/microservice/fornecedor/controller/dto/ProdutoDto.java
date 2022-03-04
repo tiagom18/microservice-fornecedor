@@ -14,6 +14,7 @@ public class ProdutoDto {
 	private Tamanho tamanho;
 	private Modelo modelo;
 	private String nome;
+	private double preco;
 	
 	public ProdutoDto(Produto produto) {
 		this.id = produto.getId();
@@ -21,7 +22,9 @@ public class ProdutoDto {
 		this.tamanho = produto.getTamanho();
 		this.modelo = produto.getModelo();
 		this.nome = produto.getNome();
-	}
+		this.setPreco(produto.getPreco());
+		}
+	
 	public Long getId() {
 		return id;
 	}
@@ -40,6 +43,12 @@ public class ProdutoDto {
 	
 	public static Page<ProdutoDto> converter(Page<Produto> produto) {
 		return produto.map(ProdutoDto::new);
+	}
+	public double getPreco() {
+		return preco;
+	}
+	public void setPreco(double preco) {
+		this.preco = preco;
 	}
 	
 }

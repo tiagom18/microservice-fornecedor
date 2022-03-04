@@ -18,17 +18,20 @@ public class Produto {
 	@Enumerated(EnumType.STRING)
 	private Modelo modelo;
 	private String nome;
-
+	private double preco;
+	
+	
 	public Produto() {
 
 	}
 
-	public Produto(Cor cor, Tamanho tamanho, Modelo modelo, String nome) {
+	public Produto(Cor cor, Tamanho tamanho, Modelo modelo, String nome,double preco) {
 		super();
 		this.cor = cor;
 		this.tamanho = tamanho;
 		this.modelo = modelo;
 		this.nome = nome;
+		this.preco = preco;
 	}
 
 
@@ -91,5 +94,13 @@ public class Produto {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(double preco) {
+		this.preco = preco;
 	}
 }
