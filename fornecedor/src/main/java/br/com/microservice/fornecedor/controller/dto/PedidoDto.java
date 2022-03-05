@@ -13,7 +13,7 @@ public class PedidoDto {
 
 	public PedidoDto(Pedido pedido) {
 		this.id = pedido.getId();
-		this.quantidade = pedido.getQuantidade();
+	
 		this.produto = getProduto();
 
 	}

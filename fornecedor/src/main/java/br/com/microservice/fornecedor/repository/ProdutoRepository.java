@@ -20,6 +20,8 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long>{
 	Page<Produto> findByModelo(@RequestParam("modelo") Modelo modelo, Pageable paginacao);
 	List<Produto> findById(List<Long> idsProdutos);
 	
+
+	
 	
 
 }
