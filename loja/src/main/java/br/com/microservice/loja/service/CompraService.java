@@ -22,7 +22,7 @@ public class CompraService {
 		final String estado = compra.getEndereco().getEstado();
 		
 		
-		InfoFornecedorDTO info = fornecedorClient.getInFornecedorfoPorEstado(estado);
+		InfoFornecedorDTO info = fornecedorClient.getProdutosPorId(estado);
 		
 	
 		InfoPedidoDTO infoPedido = fornecedorClient.realizaPedido(compra.getItens());

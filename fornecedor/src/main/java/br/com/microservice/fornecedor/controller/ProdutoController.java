@@ -37,8 +37,6 @@ import br.com.microservice.fornecedor.repository.ProdutoRepository;
 @RequestMapping("/produtos")
 public class ProdutoController {
 	
-
-		
 		
 		@Autowired
 		private ProdutoRepository produtoRepository;

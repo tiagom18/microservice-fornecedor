@@ -6,7 +6,6 @@ public class Compra {
 	
 	private Long pedidoId;
 	
-
 	private String enderecoDestino;
 
 	public Long getId() {

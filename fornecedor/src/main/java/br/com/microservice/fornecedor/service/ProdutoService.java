@@ -12,10 +12,9 @@ public class ProdutoService {
 
 	private ProdutoRepository produtoRepository;
 	
-	public List<Produto> getProdutosPorEstado(List<Long> idsProdutos) {
+	public List<Produto> getProdutosPorId(List<Long> idsProdutos) {
 		return produtoRepository.findByIdIn(idsProdutos);
 	}
-
 	
 }
 

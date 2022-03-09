@@ -56,16 +56,6 @@ public class InfoFornecedorController {
 
 		}
 
-		@GetMapping("/{id}")
-		public ResponseEntity<InfoFornecedorDto> detalhar(@PathVariable Long id) {
-			Optional<InfoFornecedor> infoFornecedor = infoFornecedorRepository.findById(id);
-			if (infoFornecedor.isPresent()) {
-				return ResponseEntity.ok(new InfoFornecedorDto(infoFornecedor.get()));
-			}
-			return ResponseEntity.notFound().build();
-
-		}
-
 		@PutMapping("/{id}")
 		@Transactional
 		@CacheEvict(value = "listaDeFornecedor", allEntries = true)

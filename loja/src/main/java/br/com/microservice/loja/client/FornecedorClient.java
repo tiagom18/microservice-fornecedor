@@ -15,7 +15,7 @@ import br.com.microservice.loja.dto.ItemDaCompraDTO;
 public interface FornecedorClient {
 
 	@RequestMapping("/infoFornecedor/{estado}")
-	InfoFornecedorDTO getInFornecedorfoPorEstado(@PathVariable String estado);
+	InfoFornecedorDTO getProdutosPorId(@PathVariable String estado);
 
 	@RequestMapping(method=RequestMethod.POST, value="/pedido")
 	InfoPedidoDTO realizaPedido(List<ItemDaCompraDTO> itens);
