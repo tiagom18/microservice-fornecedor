@@ -3,9 +3,7 @@ package br.com.microservice.fornecedor.controller.form;
 import javax.validation.constraints.NotNull;
 
 import br.com.microservice.fornecedor.modelo.InfoFornecedor;
-import br.com.microservice.fornecedor.modelo.Produto;
 import br.com.microservice.fornecedor.repository.InfoFornecedorRepository;
-import br.com.microservice.fornecedor.repository.ProdutoRepository;
 
 public class InfoFornecedorForm {
 
@@ -40,7 +38,7 @@ public class InfoFornecedorForm {
 	
 	
 	public InfoFornecedor atualizar(Long id, InfoFornecedorRepository fornecedorRepository) {
-		InfoFornecedor infoFornecedor = fornecedorRepository.getOne(id);
+		InfoFornecedor infoFornecedor = fornecedorRepository.getById(id);
 		infoFornecedor.setEndereco(this.endereco);
 		infoFornecedor.setEstado(this.estado);
 		infoFornecedor.setNome(this.nome);

@@ -6,8 +6,7 @@ public class Compra {
 	
 	private Long pedidoId;
 	
-	private Integer tempoDePreparo;
-	
+
 	private String enderecoDestino;
 
 	public Long getId() {
@@ -26,13 +25,7 @@ public class Compra {
 		this.pedidoId = pedidoId;
 	}
 
-	public Integer getTempoDePreparo() {
-		return tempoDePreparo;
-	}
-
-	public void setTempoDePreparo(Integer tempoDePreparo) {
-		this.tempoDePreparo = tempoDePreparo;
-	}
+	
 
 	public String getEnderecoDestino() {
 		return enderecoDestino;

@@ -30,7 +30,7 @@ public class PedidoService {
         
         List<ItemPedido> itemPedido = ItemPedido(itens);
         Pedido pedido = new Pedido(itemPedido);
-        pedido.setTempoDePreparo(itens.size());
+   
         return pedidoRepository.save(pedido);
     }
     
@@ -40,27 +40,17 @@ public class PedidoService {
 
     private List<ItemPedido> ItemPedido(List<PedidoProdutoDto> itens) {
         
-        List<Long> idsProdutos = itens
-                .stream()
-                .map(item -> item.getId())
-                .collect(Collectors.toList());
+        List<Long> idsProdutos = itens.stream().map(item -> item.getId()).collect(Collectors.toList());
         
-        List<Produto> pedidoProduto = produtoRepository.findById(idsProdutos);
+        List<Produto> pedidoProduto = produtoRepository.findByIdIn(idsProdutos);
         
-        List<ItemPedido> pedidoItens = itens
-            .stream()
-            .map(item -> {
-                Produto produto = pedidoProduto
-                        .stream()
-                        .filter(p -> p.getId() == item.getId())
-                        .findFirst().get();
-                
+        List<ItemPedido> pedidoItens = itens.stream().map(item -> {
+                Produto produto = pedidoProduto.stream().filter(p -> p.getId() == item.getId()).findFirst().get();        
                 ItemPedido itemPedido = new ItemPedido();
                 itemPedido.setProduto(produto);
                 itemPedido.setQuantidade(item.getQuantidade());
                 return itemPedido;
-            })
-            .collect(Collectors.toList());
+            }).collect(Collectors.toList());
         return pedidoItens;
     }
 }

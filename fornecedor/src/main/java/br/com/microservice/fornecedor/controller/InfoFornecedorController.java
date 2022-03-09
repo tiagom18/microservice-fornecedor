@@ -23,10 +23,20 @@ import br.com.microservice.fornecedor.controller.dto.InfoFornecedorDto;
 import br.com.microservice.fornecedor.controller.form.InfoFornecedorForm;
 import br.com.microservice.fornecedor.modelo.InfoFornecedor;
 import br.com.microservice.fornecedor.repository.InfoFornecedorRepository;
-
+import br.com.microservice.fornecedor.service.InfoFornecedorService;
 @RestController
 @RequestMapping("/infoFornecedor")
 public class InfoFornecedorController {
+	
+
+	@Autowired
+	private InfoFornecedorService infoFornecedorService;
+	
+	@RequestMapping("/{estado}")
+	public InfoFornecedor getInfoPorEstado(@PathVariable String estado) {
+
+		return infoFornecedorService.getInfoFornecedorPorEstado(estado);
+	}
 	
 
 		
@@ -82,5 +92,3 @@ public class InfoFornecedorController {
 
 		}
 	}
-
-

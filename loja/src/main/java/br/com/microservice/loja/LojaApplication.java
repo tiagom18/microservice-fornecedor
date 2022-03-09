@@ -8,7 +8,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
+
 @EnableFeignClients
+
 public class LojaApplication {
 	
 	@Bean
@@ -22,3 +24,4 @@ public class LojaApplication {
 	}
 
 }
+ 

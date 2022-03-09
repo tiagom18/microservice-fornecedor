@@ -7,8 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
-
 @Entity
 public class InfoFornecedor implements Serializable {
 
@@ -23,8 +21,6 @@ public class InfoFornecedor implements Serializable {
 	private String estado;
 
 	private String endereco;
-	
-	
 
 	public Long getId() {
 		return id;
@@ -72,6 +68,7 @@ public class InfoFornecedor implements Serializable {
 	public InfoFornecedor() {
 
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -1,4 +1,5 @@
 package br.com.microservice.fornecedor.modelo;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,56 +15,47 @@ import javax.persistence.OneToMany;
 @Entity
 public class Pedido {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private Integer tempoDePreparo;
+	@Enumerated(EnumType.STRING)
+	private Status status;
 
-    @Enumerated(EnumType.STRING)
-    private Status status;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "pedidoId")
+	private List<ItemPedido> itens;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pedidoId")
-    private List<ItemPedido> itens;
+	public Pedido(List<ItemPedido> itens) {
+		this.itens = itens;
+		this.status = Status.RECEBIDO;
+	}
 
-    public Pedido(List<ItemPedido> itens) {
-        this.itens = itens;
-        this.status = Status.RECEBIDO;
-    }
+	public Pedido() {
+	}
 
-    public Pedido() {
-    }
+	public List<ItemPedido> getItens() {
+		return itens;
+	}
 
-    public List<ItemPedido> getItens() {
-        return itens;
-    }
+	public void setItens(List<ItemPedido> itens) {
+		this.itens = itens;
+	}
 
-    public void setItens(List<ItemPedido> itens) {
-        this.itens = itens;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Status getStatus() {
+		return status;
+	}
 
-    public Status getStatus() {
-        return status;
-    }
+	public void setStatus(Status status) {
+		this.status = status;
+	}
 
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public Integer getTempoDePreparo() {
-        return tempoDePreparo;
-    }
-
-    public void setTempoDePreparo(Integer tempoDePreparo) {
-        this.tempoDePreparo = tempoDePreparo;
-    }
 }

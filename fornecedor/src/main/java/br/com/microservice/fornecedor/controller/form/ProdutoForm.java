@@ -63,7 +63,7 @@ public class ProdutoForm {
 	
 	
 	public Produto atualizar(Long id,ProdutoRepository produtoRepository) {
-		Produto produto = produtoRepository.getOne(id);
+		Produto produto = produtoRepository.getById(id);
 		produto.setCor(this.cor);
 		produto.setTamanho(this.tamanho);
 		produto.setModelo(this.modelo);
