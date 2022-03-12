@@ -1,0 +1,10 @@
+server:
+  port: 8888
+spring:
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: C:\Users\tiago\Documents\workspace-spring-tool-suite-4-4.13.1.RELEASE\Projeto-Compass\microservice-fornecedor\fornecedor
+  profiles:
+    active: native
