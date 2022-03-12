@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
@@ -43,53 +44,50 @@ public class ProdutoController {
 
 		@GetMapping("/cor")
 		@Cacheable(value="listaDeProdutoPorCor")
-		public Page<ProdutoDto> listarCor(@RequestParam(required = false) String cor, 
-				@PageableDefault(sort = "id", direction = Direction.ASC) Pageable paginacao) {
-			
+		public Page<ProdutoDto> listarCor(@RequestParam(required = false) Cor cor, @RequestParam int pagina,
+				@RequestParam int quantidade) {
+
+			Pageable paginacao = PageRequest.of(pagina, quantidade);
+
 			if (cor == null) {
-				Page<Produto> topicos = produtoRepository.findAll(paginacao);
-				return ProdutoDto.converter(topicos);
+				Page<Produto> produto = produtoRepository.findAll(paginacao);
+				return ProdutoDto.converter(produto);
 			} else {
-				
-				String corString = cor.toUpperCase();
-				Cor corEnum = Enum.valueOf(Cor.class, corString);
-				
-				Page<Produto> topicos = produtoRepository.findByCor(corEnum, paginacao);
-				return ProdutoDto.converter(topicos);
+
+				Page<Produto> produto = produtoRepository.findByCor(cor, paginacao);
+				return ProdutoDto.converter(produto);
 			}
 		}
 		
 		@GetMapping("/tamanho")
 		@Cacheable(value="listaDeProdutoPorTamanho")
-		public Page<ProdutoDto> listarTamanho(@RequestParam(required = false) String tamanho, 
-				@PageableDefault(sort = "id", direction = Direction.ASC) Pageable paginacao) {
-			
+		public Page<ProdutoDto> listarTamanho(@RequestParam(required = false) Tamanho tamanho, @RequestParam int pagina,
+				@RequestParam int quantidade) {
+
+			Pageable paginacao = PageRequest.of(pagina, quantidade);
+
 			if (tamanho == null) {
-				Page<Produto> topicos = produtoRepository.findAll(paginacao);
-				return ProdutoDto.converter(topicos);
+				Page<Produto> produto = produtoRepository.findAll(paginacao);
+				return ProdutoDto.converter(produto);
 			} else {
-				
-				String tamanhoString = tamanho.toUpperCase();
-				Tamanho tamanhoEnum = Enum.valueOf(Tamanho.class, tamanhoString);
-				
-				Page<Produto> topicos = produtoRepository.findByTamanho(tamanhoEnum, paginacao);
-				return ProdutoDto.converter(topicos);
+
+				Page<Produto> produto = produtoRepository.findByTamanho(tamanho, paginacao);
+				return ProdutoDto.converter(produto);
 			}
 		}
 		@GetMapping("/modelo")
 		@Cacheable(value="listaDeProdutoPorModelo")
-		public Page<ProdutoDto> listarModelo(@RequestParam(required = false) String modelo, 
-				@PageableDefault(sort = "id", direction = Direction.ASC) Pageable paginacao) {
-			
+		public Page<ProdutoDto> listarModelo(@RequestParam(required = false) Modelo modelo, @RequestParam int pagina,
+				@RequestParam int quantidade) {
+
+			Pageable paginacao = PageRequest.of(pagina, quantidade);
+
 			if (modelo == null) {
-				Page<Produto> topicos = produtoRepository.findAll(paginacao);
-				return ProdutoDto.converter(topicos);
+				Page<Produto> produto = produtoRepository.findAll(paginacao);
+				return ProdutoDto.converter(produto);
 			} else {
-				
-				String modeloString = modelo.toUpperCase();
-				Modelo modeloEnum = Enum.valueOf(Modelo.class, modeloString);
-				
-				Page<Produto> produto = produtoRepository.findByModelo(modeloEnum, paginacao);
+
+				Page<Produto> produto = produtoRepository.findByModelo(modelo, paginacao);
 				return ProdutoDto.converter(produto);
 			}
 		}
@@ -140,5 +138,8 @@ public class ProdutoController {
 
 		}
 	}
+
+
+
 
 

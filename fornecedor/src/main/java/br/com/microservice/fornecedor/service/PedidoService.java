@@ -1,11 +1,14 @@
 package br.com.microservice.fornecedor.service;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
-
+import br.com.microservice.fornecedor.controller.dto.PedidoDto;
 import br.com.microservice.fornecedor.controller.dto.PedidoProdutoDto;
 import br.com.microservice.fornecedor.modelo.ItemPedido;
 import br.com.microservice.fornecedor.modelo.Pedido;
@@ -34,10 +37,17 @@ public class PedidoService {
         return pedidoRepository.save(pedido);
     }
     
-    public Pedido getPedidoPorId(Long id) {
-        return this.pedidoRepository.findById(id).orElse(new Pedido());
+    
+    public ResponseEntity<Optional<Pedido>> getPedidoPorId(@PathVariable Long id) {
+    Optional<Pedido> pedido = pedidoRepository.findById(id);
+    if (pedido.isPresent()) {
+    return ResponseEntity.ok(pedidoRepository.findById(id));     
     }
+    return ResponseEntity.notFound().build();
 
+
+
+    }
     private List<ItemPedido> ItemPedido(List<PedidoProdutoDto> itens) {
         
         List<Long> idsProdutos = itens.stream().map(item -> item.getId()).collect(Collectors.toList());
