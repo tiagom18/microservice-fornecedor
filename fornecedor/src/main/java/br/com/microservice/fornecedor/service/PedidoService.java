@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import br.com.microservice.fornecedor.controller.dto.PedidoDto;
 import br.com.microservice.fornecedor.controller.dto.PedidoProdutoDto;
 import br.com.microservice.fornecedor.modelo.ItemPedido;
 import br.com.microservice.fornecedor.modelo.Pedido;

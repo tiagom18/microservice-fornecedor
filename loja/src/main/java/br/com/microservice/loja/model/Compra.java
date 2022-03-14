@@ -2,19 +2,13 @@ package br.com.microservice.loja.model;
 
 public class Compra {
 
-	private Long id;
+	
 	
 	private Long pedidoId;
 	
 	private String enderecoDestino;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
 
 	public Long getPedidoId() {
 		return pedidoId;
