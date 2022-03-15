@@ -25,6 +25,9 @@ public class ProdutoDto {
 		this.setPreco(produto.getPreco());
 		}
 	
+	public ProdutoDto() {
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -6,7 +6,7 @@ public class Compra {
 	
 	private Long pedidoId;
 	
-	private String enderecoDestino;
+	private String enderecoDoFornecedor;
 
 	
 
@@ -18,13 +18,15 @@ public class Compra {
 		this.pedidoId = pedidoId;
 	}
 
+	public String getEnderecoDoFornecedor() {
+		return enderecoDoFornecedor;
+	}
+
+	public void setEnderecoDoFornecedor(String enderecoDoFornecedor) {
+		this.enderecoDoFornecedor = enderecoDoFornecedor;
+	}
+
 	
 
-	public String getEnderecoDestino() {
-		return enderecoDestino;
-	}
-
-	public void setEnderecoDestino(String enderecoDestino) {
-		this.enderecoDestino = enderecoDestino;
-	}
+	
 }

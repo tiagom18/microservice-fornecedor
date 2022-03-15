@@ -11,6 +11,8 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,10 +33,10 @@ import br.com.microservice.fornecedor.modelo.Modelo;
 import br.com.microservice.fornecedor.modelo.Produto;
 import br.com.microservice.fornecedor.modelo.Tamanho;
 import br.com.microservice.fornecedor.repository.ProdutoRepository;
+import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping("/produtos")
-
 public class ProdutoController {
 	
 		
@@ -43,6 +45,7 @@ public class ProdutoController {
 
 		@GetMapping("/cor")
 		@Cacheable(value="listaDeProdutoPorCor")
+		@Operation(summary = "Mostra um produto por cor", description = "Para mostrar um produto passe a cor do produto, o tamanho da pagina e a quantidade de produtos por pagina")
 		public Page<ProdutoDto> listarCor(@RequestParam(required = false) Cor cor, @RequestParam int pagina,
 				@RequestParam int quantidade) {
 
@@ -60,6 +63,7 @@ public class ProdutoController {
 		
 		@GetMapping("/tamanho")
 		@Cacheable(value="listaDeProdutoPorTamanho")
+		@Operation(summary = "Mostra um produto por tamanho", description = "Para mostrar um produto passe o tamanho do produto, o tamanho da pagina e a quantidade de produtos por pagina")
 		public Page<ProdutoDto> listarTamanho(@RequestParam(required = false) Tamanho tamanho, @RequestParam int pagina,
 				@RequestParam int quantidade) {
 
@@ -76,6 +80,7 @@ public class ProdutoController {
 		}
 		@GetMapping("/modelo")
 		@Cacheable(value="listaDeProdutoPorModelo")
+		@Operation(summary = "Mostra um produto por modelo", description = "Para mostrar um produto passe o modelo do produto, o tamanho da pagina e a quantidade de produtos por pagina")
 		public Page<ProdutoDto> listarModelo(@RequestParam(required = false) Modelo modelo, @RequestParam int pagina,
 				@RequestParam int quantidade) {
 
@@ -93,6 +98,8 @@ public class ProdutoController {
 		@PostMapping
 		@Transactional
 		@CacheEvict(value = "listaDeProduto", allEntries = true)
+	    @Operation(summary = "Cadastra um produto novo", description = "Para cadastrar um novo produto passe a cor (PRETO, BRANCO, ROSA, AZUL, VERDE, AMARELO, VERMELHOR, ROXO),"
+	    		+ " tamanho (P, M, G), modelo (VESTIDO, BLUSA, CALCA, CAMISETA, PIJAMA, SAIA), nome e preço")
 		public ResponseEntity<ProdutoDto> cadastrar(@RequestBody @Valid ProdutoForm form, UriComponentsBuilder uriBuilder) {
 			Produto produto = form.converter();
 			produtoRepository.save(produto);
@@ -102,6 +109,7 @@ public class ProdutoController {
 		}
 
 		@GetMapping("/{id}")
+	    @Operation(summary = "Mostra um produto por ID", description = "Para mostrar um produto passe o ID do produto")
 		public ResponseEntity<ProdutoDto> detalhar(@PathVariable Long id) {
 			Optional<Produto> produto = produtoRepository.findById(id);
 			if (produto.isPresent()) {
@@ -114,6 +122,7 @@ public class ProdutoController {
 		@PutMapping("/{id}")
 		@Transactional
 		@CacheEvict(value = "listaDeProduto", allEntries = true)
+		@Operation(summary = "Atualiza um produto por ID", description = "Para atualizar um produto passe o ID do produto e altere as informacoes a baixo")
 		public ResponseEntity<ProdutoDto> atualizar(@PathVariable Long id, @RequestBody @Valid ProdutoForm form) {
 			Optional<Produto> optional = produtoRepository.findById(id);
 			if (optional.isPresent()) {
@@ -127,6 +136,7 @@ public class ProdutoController {
 		@DeleteMapping("/{id}")
 		@Transactional
 		@CacheEvict(value = "listaDeProduto", allEntries = true)
+		@Operation(summary = "Remove um produto por ID", description = "Para remover um produto passe o ID do produto")
 		public ResponseEntity<?> remover(@PathVariable Long id) {
 			Optional<Produto> optional = produtoRepository.findById(id);
 			if (optional.isPresent()) {
