@@ -10,6 +10,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -32,8 +33,8 @@ public class InfoFornecedorController {
 	@Autowired
 	private InfoFornecedorService infoFornecedorService;
 	
-	@RequestMapping("/{estado}")
-	@Operation(hidden = true)
+	@GetMapping("/{estado}")
+	@Operation(summary = "Mostra um fornecedor por estado ", description = "Para mostrar um estado passe o nome do estado")
 	public InfoFornecedor getInfoPorEstado(@PathVariable String estado) {
 
 		return infoFornecedorService.getInfoFornecedorPorEstado(estado);
