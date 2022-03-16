@@ -6,6 +6,7 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant-path-matcher
+      
 eureka:
   client:
     fetch-registry: true

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
@@ -32,6 +33,7 @@ import br.com.microservice.fornecedor.modelo.Modelo;
 import br.com.microservice.fornecedor.modelo.Produto;
 import br.com.microservice.fornecedor.modelo.Tamanho;
 import br.com.microservice.fornecedor.repository.ProdutoRepository;
+import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping("/produtos")
@@ -43,59 +45,61 @@ public class ProdutoController {
 
 		@GetMapping("/cor")
 		@Cacheable(value="listaDeProdutoPorCor")
-		public Page<ProdutoDto> listarCor(@RequestParam(required = false) String cor, 
-				@PageableDefault(sort = "id", direction = Direction.ASC) Pageable paginacao) {
-			
+		@Operation(summary = "Mostra um produto por cor", description = "Para mostrar um produto passe a cor do produto, o tamanho da pagina e a quantidade de produtos por pagina")
+		public Page<ProdutoDto> listarCor(@RequestParam(required = false) Cor cor, @RequestParam int pagina,
+				@RequestParam int quantidade) {
+
+			Pageable paginacao = PageRequest.of(pagina, quantidade);
+
 			if (cor == null) {
-				Page<Produto> topicos = produtoRepository.findAll(paginacao);
-				return ProdutoDto.converter(topicos);
+				Page<Produto> produto = produtoRepository.findAll(paginacao);
+				return ProdutoDto.converter(produto);
 			} else {
-				
-				String corString = cor.toUpperCase();
-				Cor corEnum = Enum.valueOf(Cor.class, corString);
-				
-				Page<Produto> topicos = produtoRepository.findByCor(corEnum, paginacao);
-				return ProdutoDto.converter(topicos);
+
+				Page<Produto> produto = produtoRepository.findByCor(cor, paginacao);
+				return ProdutoDto.converter(produto);
 			}
 		}
 		
 		@GetMapping("/tamanho")
 		@Cacheable(value="listaDeProdutoPorTamanho")
-		public Page<ProdutoDto> listarTamanho(@RequestParam(required = false) String tamanho, 
-				@PageableDefault(sort = "id", direction = Direction.ASC) Pageable paginacao) {
-			
+		@Operation(summary = "Mostra um produto por tamanho", description = "Para mostrar um produto passe o tamanho do produto, o tamanho da pagina e a quantidade de produtos por pagina")
+		public Page<ProdutoDto> listarTamanho(@RequestParam(required = false) Tamanho tamanho, @RequestParam int pagina,
+				@RequestParam int quantidade) {
+
+			Pageable paginacao = PageRequest.of(pagina, quantidade);
+
 			if (tamanho == null) {
-				Page<Produto> topicos = produtoRepository.findAll(paginacao);
-				return ProdutoDto.converter(topicos);
+				Page<Produto> produto = produtoRepository.findAll(paginacao);
+				return ProdutoDto.converter(produto);
 			} else {
-				
-				String tamanhoString = tamanho.toUpperCase();
-				Tamanho tamanhoEnum = Enum.valueOf(Tamanho.class, tamanhoString);
-				
-				Page<Produto> topicos = produtoRepository.findByTamanho(tamanhoEnum, paginacao);
-				return ProdutoDto.converter(topicos);
+
+				Page<Produto> produto = produtoRepository.findByTamanho(tamanho, paginacao);
+				return ProdutoDto.converter(produto);
 			}
 		}
 		@GetMapping("/modelo")
 		@Cacheable(value="listaDeProdutoPorModelo")
-		public Page<ProdutoDto> listarModelo(@RequestParam(required = false) String modelo, 
-				@PageableDefault(sort = "id", direction = Direction.ASC) Pageable paginacao) {
-			
+		@Operation(summary = "Mostra um produto por modelo", description = "Para mostrar um produto passe o modelo do produto, o tamanho da pagina e a quantidade de produtos por pagina")
+		public Page<ProdutoDto> listarModelo(@RequestParam(required = false) Modelo modelo, @RequestParam int pagina,
+				@RequestParam int quantidade) {
+
+			Pageable paginacao = PageRequest.of(pagina, quantidade);
+
 			if (modelo == null) {
-				Page<Produto> topicos = produtoRepository.findAll(paginacao);
-				return ProdutoDto.converter(topicos);
+				Page<Produto> produto = produtoRepository.findAll(paginacao);
+				return ProdutoDto.converter(produto);
 			} else {
-				
-				String modeloString = modelo.toUpperCase();
-				Modelo modeloEnum = Enum.valueOf(Modelo.class, modeloString);
-				
-				Page<Produto> produto = produtoRepository.findByModelo(modeloEnum, paginacao);
+
+				Page<Produto> produto = produtoRepository.findByModelo(modelo, paginacao);
 				return ProdutoDto.converter(produto);
 			}
 		}
 		@PostMapping
 		@Transactional
 		@CacheEvict(value = "listaDeProduto", allEntries = true)
+	    @Operation(summary = "Cadastra um produto novo", description = "Para cadastrar um novo produto passe a cor (PRETO, BRANCO, ROSA, AZUL, VERDE, AMARELO, VERMELHOR, ROXO),"
+	    		+ " tamanho (P, M, G), modelo (VESTIDO, BLUSA, CALCA, CAMISETA, PIJAMA, SAIA), nome e preço")
 		public ResponseEntity<ProdutoDto> cadastrar(@RequestBody @Valid ProdutoForm form, UriComponentsBuilder uriBuilder) {
 			Produto produto = form.converter();
 			produtoRepository.save(produto);
@@ -105,6 +109,7 @@ public class ProdutoController {
 		}
 
 		@GetMapping("/{id}")
+	    @Operation(summary = "Mostra um produto por ID", description = "Para mostrar um produto passe o ID do produto")
 		public ResponseEntity<ProdutoDto> detalhar(@PathVariable Long id) {
 			Optional<Produto> produto = produtoRepository.findById(id);
 			if (produto.isPresent()) {
@@ -117,6 +122,7 @@ public class ProdutoController {
 		@PutMapping("/{id}")
 		@Transactional
 		@CacheEvict(value = "listaDeProduto", allEntries = true)
+		@Operation(summary = "Atualiza um produto por ID", description = "Para atualizar um produto passe o ID do produto e altere as informacoes a baixo")
 		public ResponseEntity<ProdutoDto> atualizar(@PathVariable Long id, @RequestBody @Valid ProdutoForm form) {
 			Optional<Produto> optional = produtoRepository.findById(id);
 			if (optional.isPresent()) {
@@ -130,6 +136,7 @@ public class ProdutoController {
 		@DeleteMapping("/{id}")
 		@Transactional
 		@CacheEvict(value = "listaDeProduto", allEntries = true)
+		@Operation(summary = "Remove um produto por ID", description = "Para remover um produto passe o ID do produto")
 		public ResponseEntity<?> remover(@PathVariable Long id) {
 			Optional<Produto> optional = produtoRepository.findById(id);
 			if (optional.isPresent()) {
@@ -140,5 +147,8 @@ public class ProdutoController {
 
 		}
 	}
+
+
+
 
 

@@ -33,3 +33,6 @@ eureka:
     service-url:
       defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
 
+springdoc.swagger-ui.path: /swagger-ui
+springdoc.swagger-ui.disable-swagger-default-url: true
+springdoc.swagger-ui.supportedSubmitMethods: ' "get" ,"put" ,"post" "delete" '

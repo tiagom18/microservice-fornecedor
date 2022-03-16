@@ -2,19 +2,13 @@ package br.com.microservice.loja.model;
 
 public class Compra {
 
-	private Long id;
+	
 	
 	private Long pedidoId;
 	
-	private String enderecoDestino;
+	private String enderecoDoFornecedor;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
 
 	public Long getPedidoId() {
 		return pedidoId;
@@ -24,13 +18,15 @@ public class Compra {
 		this.pedidoId = pedidoId;
 	}
 
+	public String getEnderecoDoFornecedor() {
+		return enderecoDoFornecedor;
+	}
+
+	public void setEnderecoDoFornecedor(String enderecoDoFornecedor) {
+		this.enderecoDoFornecedor = enderecoDoFornecedor;
+	}
+
 	
 
-	public String getEnderecoDestino() {
-		return enderecoDestino;
-	}
-
-	public void setEnderecoDestino(String enderecoDestino) {
-		this.enderecoDestino = enderecoDestino;
-	}
+	
 }

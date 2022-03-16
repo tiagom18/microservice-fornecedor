@@ -30,7 +30,7 @@ public class CompraService {
 		Compra compraSalva = new Compra();
 		compraSalva.setPedidoId(infoPedido.getId());
 	
-		compraSalva.setEnderecoDestino(info.getEndereco());
+		compraSalva.setEnderecoDoFornecedor(info.getEndereco());
 		
 		System.out.println(info.getEndereco());
 		
